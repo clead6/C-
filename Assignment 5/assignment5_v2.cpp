@@ -241,10 +241,8 @@ double matrix::determinant(matrix &mat)
         
         std::cout << determinant << std::endl;
     }
-
     return determinant;
 }
-
 
 // Overload cout << operator to output
 std::ostream & operator<<(std::ostream &os, const matrix &mat)
