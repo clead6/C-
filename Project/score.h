@@ -17,6 +17,7 @@ public:
     ~score();
     int points_pieces();
     int points_lines(int &level, int &lines_deleted);
+    void print_score(int &level, int &score_count);
 };
 
 #endif

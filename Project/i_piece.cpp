@@ -8,7 +8,7 @@ i_piece::i_piece(board & board)
     piece = new std::string[4];
 
     for (int i{};i<4;i++){
-        piece[i]=(char)254u;
+        piece[i]="#";
     }
 
     vertical_position = 1; 
