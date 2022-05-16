@@ -20,6 +20,7 @@ public:
     std::string *get_console() {return console;}
     void print_board();
     bool game_over();
+    int delete_rows();
 
     int index(int i, int j) const; 
     std::string & operator()(const int i, const int j) const; 

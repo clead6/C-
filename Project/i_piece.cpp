@@ -6,19 +6,19 @@
 i_piece::i_piece(board & board) 
 {
     piece = new std::string[4];
-    int length {board.get_length()};
 
     for (int i{};i<4;i++){
-        piece[i]="#";
+        piece[i]=(char)254u;
     }
 
     vertical_position = 1; 
-    horizontal_position = length/2-1; // get length
+    horizontal_position = board.get_length()/2-1; // get length
 
 }
 
 i_piece::~i_piece()
 {
+    std::cout << "delete piece" << std::endl;
     horizontal_position=0;
     vertical_position=0;
     rotation=0;
@@ -163,15 +163,20 @@ void i_piece::rotate(board &board)
         case 0:
             if (vertical_position>2 && vertical_position<height-1) {
                 try {
-                    for (int i{};i<4;i++) {
-                        game_console[board.index(horizontal_position+i,vertical_position)]=" ";
+                    if (game_console[board.index(horizontal_position+2,vertical_position-1)]==" " 
+                        && game_console[board.index(horizontal_position+2,vertical_position+1)]==" "
+                        && game_console[board.index(horizontal_position+2,vertical_position+2)]==" ") {
+                        
+                        for (int i{};i<4;i++) {
+                            game_console[board.index(horizontal_position+i,vertical_position)]=" ";
+                        }
+                        horizontal_position+=2;
+                        vertical_position-=1;
+                        for (int i{};i<4;i++) {
+                            game_console[board.index(horizontal_position,vertical_position+i)]=piece[i];
+                        }
+                        rotation=1; 
                     }
-                    horizontal_position+=2;
-                    vertical_position-=1;
-                    for (int i{};i<4;i++) {
-                        game_console[board.index(horizontal_position,vertical_position+i)]=piece[i];
-                    }
-                    rotation=1; 
                 } catch (std::out_of_range& except) {}
             }
             break;
@@ -179,17 +184,21 @@ void i_piece::rotate(board &board)
         case 1:
             if (horizontal_position>2 && horizontal_position<length-2) {
                 try {
+                    if (game_console[board.index(horizontal_position-2,vertical_position+2)]==" " 
+                        && game_console[board.index(horizontal_position-1,vertical_position+2)]==" "
+                        && game_console[board.index(horizontal_position+1,vertical_position+2)]==" ") {
             
-                    for (int i{};i<4;i++) {
-                        game_console[board.index(horizontal_position,vertical_position+i)]=" ";
-                    }
-                    horizontal_position-=2;
-                    vertical_position+=2;
-                    for (int i{};i<4;i++) {
-                        game_console[board.index(horizontal_position+i,vertical_position)]=piece[i];
-                    } 
+                        for (int i{};i<4;i++) {
+                            game_console[board.index(horizontal_position,vertical_position+i)]=" ";
+                        }
+                        horizontal_position-=2;
+                        vertical_position+=2;
+                        for (int i{};i<4;i++) {
+                            game_console[board.index(horizontal_position+i,vertical_position)]=piece[i];
+                        } 
 
-                    rotation=0;
+                        rotation=0;
+                    }
                 } catch (std::out_of_range& except) {}
             }
             break;

@@ -4,6 +4,6 @@
 
 int main() 
 {
-    tetris game;
-    game.initialize_game();
+    std::unique_ptr<tetris> game(new tetris);
+    game->initialize_game();
 }

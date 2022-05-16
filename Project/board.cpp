@@ -1,6 +1,16 @@
 #include <iostream>
 #include <string>
+#include <algorithm>
 #include "board.h"
+
+#define BLK "\e[0;30m"
+#define RED "\e[0;31m"
+#define GRN "\e[0;32m"
+#define YEL "\e[0;33m"
+#define BLU "\e[0;34m"
+#define MAG "\e[0;35m"
+#define CYN "\e[0;36m"
+#define WHT "\e[0;37m"
 
 board::board(int h, int l) 
 {
@@ -15,6 +25,7 @@ board::board(int h, int l)
 
 board::~board()
 {
+    std::cout << "delete board" << std::endl;
     height = 0;
     length = 0;
     delete[] console;
@@ -32,7 +43,7 @@ void board::print_board()
         if (i%length==0 && i!=0) {
             std::cout << "|" << std::endl << "|";
         }
-        std::cout << console[i]; // use string streams
+        std::cout << WHT << console[i]; // use string streams
     }
 
     std::cout << "|" << std::endl << "|";
@@ -48,7 +59,7 @@ int board::index(int i, int j) const
         std::cout << "Element out of bounds" << std::endl;
         throw;
     }
-    return (j-1)*height+(i-1);
+    return (j-1)*length+(i-1);
 }
 
 std::string &board::operator()(const int i, const int j) const
@@ -65,4 +76,35 @@ bool board::game_over()
         }
     }
     return false;
+}
+
+int board::delete_rows()
+{
+    bool row_full {true};
+    int number_rows {};
+    while (row_full) {
+        for (int i{1};i<=length;i++) {
+            if (console[index(i,height)]!="#") {
+                row_full = false;
+                break;
+            }
+        }
+
+        if (row_full==true) {
+            for (int j{height}; j>1; j--) {
+                for (int i{1}; i<=length; i++) {
+                    console[index(i,j)]=console[index(i,j-1)];
+                }
+            }
+
+            for (int i{1}; i<=length; i++) {
+                console[index(i,1)]=" ";
+            }
+            number_rows+=1;
+        }
+            
+
+    }
+    return number_rows;
+
 }
