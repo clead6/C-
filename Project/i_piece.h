@@ -8,11 +8,6 @@
 
 class i_piece: public tetrominos
 {
-protected:
-    std::string *piece {nullptr};
-    int horizontal_position {};
-    int vertical_position {};
-    int rotation {0};
 public:
     i_piece(board &board);
     ~i_piece();

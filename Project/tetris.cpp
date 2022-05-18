@@ -5,7 +5,6 @@
 #include <cstdlib>
 #include "board.h"
 #include "i_piece.h"
-#include "tetronimos.h"
 #include "tetris.h"
 #include "score.h"
 
@@ -37,18 +36,7 @@ void marathon::tetris::initialize_game()
     this->game_score=std::make_unique<score>();
 
     while (!game_board->game_over()) {
-
-        //int random_piece = rand() % 6;
-        int random_piece {0};
-        switch(random_piece)
-        {
-            case 0:
-                this->game_piece=std::make_unique<i_piece>(*game_board);
-                break;
-            
-        }
-
-        
+        this->game_piece=std::make_unique<i_piece>(*game_board);
         system("cls");
         game_piece->print_piece(*game_board);
 
@@ -70,7 +58,7 @@ void marathon::tetris::initialize_game()
             } else {
                 game_piece->move_down(*game_board);
                 Sleep(exp(-level/5.0)*1000);
-            }     
+            }            
 
             system("cls");
             
@@ -79,6 +67,7 @@ void marathon::tetris::initialize_game()
         game_piece->print_piece(*game_board);
         game_board->print_board(); 
 
+        fallen_pieces+=1;
         score_count = game_score->points_pieces();
 
         lines_deleted += game_board->delete_rows();
@@ -101,6 +90,7 @@ void marathon::tetris::initialize_game()
 void speed::tetris::initialize_game()
 {
     system("cls");
+    clock_t time;
     time = clock();
     this->game_board=std::make_unique<board>(12,12);
     this->game_score=std::make_unique<score>();
@@ -111,6 +101,8 @@ void speed::tetris::initialize_game()
         game_piece->print_piece(*game_board);
 
         while(!game_piece->bottom_wall(*game_board) && !game_board->game_over()) { 
+
+
             game_board->print_board();  
             game_score->print_score(level, score_count);      
 
@@ -129,8 +121,10 @@ void speed::tetris::initialize_game()
             } else {
                 game_piece->move_down(*game_board);
                 Sleep(exp(-level/5.0)*1000);
-            } 
-            system("cls");            
+            }            
+
+            system("cls");
+            
         }
 
         time = clock();
@@ -141,6 +135,8 @@ void speed::tetris::initialize_game()
 
         game_piece->print_piece(*game_board);
         game_board->print_board(); 
+
+        fallen_pieces+=1;
         score_count = game_score->points_pieces();
 
         lines_deleted += game_board->delete_rows();

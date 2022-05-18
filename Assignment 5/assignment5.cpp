@@ -336,7 +336,7 @@ int main() {
     // Copy constructor
     matrix A2{A};
     std::cout << "Change element row 1, column 2 of A, showing A2 does not change." << std::endl;
-    A(0,2)=10;
+    A(1,2)=10;
     std::cout << "A = " << A << std::endl;
     std::cout << "A2 = " << A2 << std::endl;
 
