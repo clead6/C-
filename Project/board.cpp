@@ -54,8 +54,7 @@ void board::print_board()
         if (i%length==0 && i!=0) {
             std::cout << "|" << std::endl << "|";
         }
-        std::cout << BOLDRED << console[i] << RESET; 
-        //std::cout << console[i]; 
+        std::cout << console[i];
     }
 
     std::cout << "|" << std::endl << "|";
