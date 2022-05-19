@@ -21,7 +21,7 @@
 #else
 #include <unistd.h>
 #include <cstdlib>
-#include <ncurses>
+#include <ncurses.h>
 #define Sleep(x) usleep((x)*1000)
 #define system("cls") std::cout << "\033[2J\033[1;1H";
 
