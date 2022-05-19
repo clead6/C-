@@ -58,9 +58,7 @@ void marathon::tetris::initialize_game()
         std::random_device dev;
         std::mt19937 rng(dev());
         std::uniform_int_distribution<std::mt19937::result_type> dist6(1,7); 
-        //int random_piece {7};
         switch(dist6(rng))
-        //switch(random_piece)
         {
             case 1:
                 this->game_piece=std::make_unique<i_piece>(*game_board);
@@ -156,11 +154,42 @@ void speed::tetris::initialize_game()
     this->game_score=std::make_unique<score>();
 
     while (!game_board->game_over()) {
-        this->game_piece=std::make_unique<i_piece>(*game_board);
+
+        std::random_device dev;
+        std::mt19937 rng(dev());
+        std::uniform_int_distribution<std::mt19937::result_type> dist6(1,7); 
+        switch(dist6(rng))
+        {
+            case 1:
+                this->game_piece=std::make_unique<i_piece>(*game_board);
+                break;
+            case 2:
+                this->game_piece=std::make_unique<t_piece>(*game_board);
+                break;
+            case 3:
+                this->game_piece=std::make_unique<l_piece>(*game_board);
+                break;
+            case 4:
+                this->game_piece=std::make_unique<o_piece>(*game_board);
+                break;
+            case 5:
+                this->game_piece=std::make_unique<j_piece>(*game_board);
+                break;     
+            case 6:
+                this->game_piece=std::make_unique<s_piece>(*game_board);
+                break;   
+            case 7:
+                this->game_piece=std::make_unique<z_piece>(*game_board);
+                break;        
+        }
+
+
         clear_screen();
         game_piece->print_piece(*game_board);
 
-        while(!game_piece->bottom_wall(*game_board) && !game_board->game_over()) { 
+        while(!game_piece->bottom_wall(*game_board)) { 
+
+
             initscr();
             game_board->print_board();  
             game_score->print_score(level, score_count);  
@@ -191,8 +220,8 @@ void speed::tetris::initialize_game()
                 Sleep(exp(-level/5.0)*1000);
             }
 
+
             clear_screen();
-         
         }
 
         time = clock();
