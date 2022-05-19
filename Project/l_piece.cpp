@@ -352,6 +352,7 @@ void l_piece::rotate(board &board)
                         game_console[board.index(horizontal_position+1,vertical_position+2)]=" ";
 
                         vertical_position+=1;
+                        horizontal_position-=1;
 
                         for (int i{};i<3;i++) {
                             game_console[board.index(horizontal_position+i,vertical_position)]=piece[i];
@@ -479,8 +480,6 @@ bool l_piece::right_wall(board &board)
 
         case 3: 
             if (horizontal_position+1==length) {
-                return true;
-            } else if (game_console[board.index(horizontal_position,vertical_position+1)]=="#") {
                 return true;
             } else if (game_console[board.index(horizontal_position+1,vertical_position+1)]=="#") {
                 return true;

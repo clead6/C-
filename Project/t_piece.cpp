@@ -292,7 +292,10 @@ void t_piece::rotate(board &board)
                         game_console[board.index(horizontal_position,vertical_position+1)]=piece[3];
                         rotation=1; 
                     }
-                } catch (std::out_of_range& except) {}
+                } catch (std::out_of_range& except) {
+                    std::cout << "in catch" << std::endl;
+                    Sleep(1000);
+                }
             }
             break;
 
@@ -351,6 +354,7 @@ void t_piece::rotate(board &board)
                         game_console[board.index(horizontal_position+1,vertical_position+1)]=" ";
 
                         vertical_position+=1;
+                        horizontal_position-=1;
 
                         for (int i{};i<3;i++) {
                             game_console[board.index(horizontal_position+i,vertical_position)]=piece[i];
@@ -476,8 +480,6 @@ bool t_piece::right_wall(board &board)
 
         case 3: 
             if (horizontal_position+1==length) {
-                return true;
-            } else if (game_console[board.index(horizontal_position,vertical_position+1)]=="#") {
                 return true;
             } else if (game_console[board.index(horizontal_position+1,vertical_position+2)]=="#") {
                 return true;

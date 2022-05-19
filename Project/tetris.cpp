@@ -3,6 +3,8 @@
 #include <memory>
 #include <math.h>
 #include <cstdlib>
+#include <ctime>
+#include <random>
 
 #include "board.h"
 #include "i_piece.h"
@@ -41,13 +43,12 @@ void marathon::tetris::initialize_game()
 
     while (!game_board->game_over()) {
 
-        int random_piece = rand() % 4;
+        std::random_device dev;
+        std::mt19937 rng(dev());
+        std::uniform_int_distribution<std::mt19937::result_type> dist6(1,4); 
         //int random_piece {3};
-        switch(random_piece)
+        switch(dist6(rng))
         {
-            case 0:
-                this->game_piece=std::make_unique<o_piece>(*game_board);
-                break;
             case 1:
                 this->game_piece=std::make_unique<i_piece>(*game_board);
                 break;
@@ -57,7 +58,9 @@ void marathon::tetris::initialize_game()
             case 3:
                 this->game_piece=std::make_unique<l_piece>(*game_board);
                 break;
-
+            case 4:
+                this->game_piece=std::make_unique<o_piece>(*game_board);
+                break;
             
         }
 
