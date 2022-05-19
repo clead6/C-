@@ -5,6 +5,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <random>
+#include <stdio.h>  
 
 #include "board.h"
 #include "i_piece.h"
@@ -20,8 +21,9 @@
 #else
 #include <unistd.h>
 #include <cstdlib>
+#include <ncurses>
 #define Sleep(x) usleep((x)*1000)
-#define system("cls") std::system("clear");
+#define system("cls") std::cout << "\033[2J\033[1;1H";
 
 #endif
 
@@ -38,6 +40,7 @@ speed::tetris::~tetris()
 void marathon::tetris::initialize_game()
 {
     system("cls");
+    //std::cout << "\n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n";
     this->game_board=std::make_unique<board>(12,12);
     this->game_score=std::make_unique<score>();
 
@@ -64,13 +67,38 @@ void marathon::tetris::initialize_game()
             
         }
 
-        
         system("cls");
+        //std::cout << "\n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n";
         game_piece->print_piece(*game_board);
 
         while(!game_piece->bottom_wall(*game_board)) { 
+
             game_board->print_board();  
-            game_score->print_score(level, score_count);      
+            game_score->print_score(level, score_count);  
+            
+
+            
+            /*initscr();
+            int input = getch();
+            if (input=='s') {
+                game_piece->move_down(*game_board);
+                Sleep(50);
+            } else if (input=='d') {
+                game_piece->move_right(*game_board);
+                Sleep(150);
+            } else if (input=='a') {
+                game_piece->move_left(*game_board);
+                Sleep(150);
+            } else if (input=='w') {
+                game_piece->rotate(*game_board);
+                Sleep(150);                
+            } else {
+                game_piece->move_down(*game_board);
+                Sleep(exp(-level/5.0)*1000);
+            }*/
+
+
+
             if (GetAsyncKeyState(VK_DOWN)) {
                 game_piece->move_down(*game_board);
                 Sleep(50);
@@ -86,9 +114,11 @@ void marathon::tetris::initialize_game()
             } else {
                 game_piece->move_down(*game_board);
                 Sleep(exp(-level/5.0)*1000);
-            }     
+            }  
 
+            
             system("cls");
+            //std::cout << "\n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n";
             
         }
 

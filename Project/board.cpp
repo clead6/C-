@@ -117,8 +117,6 @@ int board::delete_rows()
         }
         
         if (row_full==true) {
-            std::cout << "deleting rows " << full_row_number <<std::endl;
-            Sleep(1000);
             for (int j{full_row_number}; j>1; j--) {
                 for (int i{1}; i<=length; i++) {
                     console[index(i,j)]=console[index(i,j-1)];
