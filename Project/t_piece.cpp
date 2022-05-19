@@ -3,7 +3,6 @@
 #include "board.h"
 #include "t_piece.h"
 
-#include <windows.h>
 
 t_piece::t_piece(board & board) 
 {
@@ -292,10 +291,7 @@ void t_piece::rotate(board &board)
                         game_console[board.index(horizontal_position,vertical_position+1)]=piece[3];
                         rotation=1; 
                     }
-                } catch (std::out_of_range& except) {
-                    std::cout << "in catch" << std::endl;
-                    Sleep(1000);
-                }
+                } catch (std::out_of_range& except) {}
             }
             break;
 

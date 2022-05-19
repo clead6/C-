@@ -3,7 +3,6 @@
 #include "board.h"
 #include "l_piece.h"
 
-#include <windows.h>
 
 l_piece::l_piece(board & board) 
 {

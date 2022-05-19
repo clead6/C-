@@ -2,7 +2,6 @@
 #include <string>
 #include <algorithm>
 #include "board.h"
-#include <windows.h>
 
 #define RESET "\033[0m"
 
