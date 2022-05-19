@@ -2,6 +2,7 @@
 #include <string>
 #include <algorithm>
 #include "board.h"
+#include <windows.h>
 
 #define RESET "\033[0m"
 
@@ -81,7 +82,7 @@ std::string &board::operator()(const int i, const int j) const
 bool board::game_over() 
 {
     for (int i{1};i<=length;i++) {
-        if (console[index(i,1)]=="#" && console[index(i,2)]=="#") {
+        if (console[index(i,1)]=="#") {
 
             return true;
         }
@@ -91,18 +92,34 @@ bool board::game_over()
 
 int board::delete_rows()
 {
-    bool row_full {true};
+    bool row_full {false};
     int number_rows {};
-    while (row_full) {
-        for (int i{1};i<=length;i++) {
-            if (console[index(i,height)]!="#") {
-                row_full = false;
-                break;
-            }
-        }
+    int is_it_full {0};
+    int full_row_number {};
 
+    while(!row_full) {
+        for (int i{1};i<=length;i++) {
+            for (int j{1};j<=height;j++) {
+                if (console[index(j,i)]=="#") {
+                    is_it_full+=1;
+                }
+            }
+            
+            if (is_it_full==12) {
+                row_full=true;
+                full_row_number = i;
+                is_it_full=0;
+                break;
+            } else {
+                is_it_full=0;
+            }
+            
+        }
+        
         if (row_full==true) {
-            for (int j{height}; j>1; j--) {
+            std::cout << "deleting rows " << full_row_number <<std::endl;
+            Sleep(1000);
+            for (int j{full_row_number}; j>1; j--) {
                 for (int i{1}; i<=length; i++) {
                     console[index(i,j)]=console[index(i,j-1)];
                 }
@@ -111,11 +128,14 @@ int board::delete_rows()
             for (int i{1}; i<=length; i++) {
                 console[index(i,1)]=" ";
             }
-            number_rows+=1;
-        }
-            
 
-    }
+            number_rows+=1;
+            row_full=false;
+        } else if (row_full==false) {
+            break;
+        }
+    }       
+    
     return number_rows;
 
 }

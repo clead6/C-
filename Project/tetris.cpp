@@ -3,9 +3,12 @@
 #include <memory>
 #include <math.h>
 #include <cstdlib>
+
 #include "board.h"
 #include "i_piece.h"
-#include "tetronimos.h"
+#include "o_piece.h"
+#include "t_piece.h"
+#include "l_piece.h"
 #include "tetris.h"
 #include "score.h"
 
@@ -38,13 +41,23 @@ void marathon::tetris::initialize_game()
 
     while (!game_board->game_over()) {
 
-        //int random_piece = rand() % 6;
-        int random_piece {0};
+        int random_piece = rand() % 4;
+        //int random_piece {3};
         switch(random_piece)
         {
             case 0:
+                this->game_piece=std::make_unique<o_piece>(*game_board);
+                break;
+            case 1:
                 this->game_piece=std::make_unique<i_piece>(*game_board);
                 break;
+            case 2:
+                this->game_piece=std::make_unique<t_piece>(*game_board);
+                break;
+            case 3:
+                this->game_piece=std::make_unique<l_piece>(*game_board);
+                break;
+
             
         }
 
@@ -52,7 +65,7 @@ void marathon::tetris::initialize_game()
         system("cls");
         game_piece->print_piece(*game_board);
 
-        while(!game_piece->bottom_wall(*game_board) && !game_board->game_over()) { 
+        while(!game_piece->bottom_wall(*game_board)) { 
             game_board->print_board();  
             game_score->print_score(level, score_count);      
             if (GetAsyncKeyState(VK_DOWN)) {

@@ -6,7 +6,6 @@
 #include <memory>
 #include <ctime>
 #include "board.h"
-#include "i_piece.h"
 #include "tetronimos.h"
 #include "score.h"
 
