@@ -31,4 +31,5 @@ int score::points_lines(int &level, int &lines_deleted)
 void score::print_score(int &level, int &score_count)
 {
     std::cout << "Level " << level << "\tScore " << score_count << std::endl;
+    std::cout << std::string(14, '\n' );
 }

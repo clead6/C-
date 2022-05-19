@@ -13,7 +13,9 @@ int main()
 {
     clear_screen();
     int game_mode {};
-    std::cout << "Welcome to Tetris! Enter 1 to play a speed game, or 2 for a marathon version. " << std::endl;
+    std::cout << "Welcome to Tetris!" << std::endl;
+    std::cout << "Use A to move left, D to move right, W to rotate and S to speed down." << std::endl;
+    std::cout << "Enter 1 to play a speed game, or 2 for a marathon version. " << std::endl;
     std::cin >> game_mode;
     while (std::cin.fail() || (game_mode!=1 & game_mode!=2)) {
         std::cout << "Invalid input, enter 1 to play a speed game, or 2 for a marathon version. " << std::endl; // Needs to be >= 1
