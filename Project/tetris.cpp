@@ -17,15 +17,22 @@
 
 #ifdef _WIN32
 #include <windows.h>
+#include "PDcurses.h"
+
 
 #else
 #include <unistd.h>
 #include <cstdlib>
 #include <ncurses.h>
 #define Sleep(x) usleep((x)*1000)
-#define system("cls") std::cout << "\033[2J\033[1;1H";
 
 #endif
+
+static void clear_screen()
+{
+    std::cout << std::string(24, '\n' );
+}
+
 
 marathon::tetris::~tetris()
 {
@@ -39,8 +46,7 @@ speed::tetris::~tetris()
 
 void marathon::tetris::initialize_game()
 {
-    system("cls");
-    //std::cout << "\n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n";
+    clear_screen();
     this->game_board=std::make_unique<board>(12,12);
     this->game_score=std::make_unique<score>();
 
@@ -67,39 +73,45 @@ void marathon::tetris::initialize_game()
             
         }
 
-        system("cls");
-        //std::cout << "\n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n";
+
+        clear_screen();
         game_piece->print_piece(*game_board);
 
         while(!game_piece->bottom_wall(*game_board)) { 
 
+
+            initscr();
             game_board->print_board();  
             game_score->print_score(level, score_count);  
-            
+            refresh();
+            noecho();
+            nodelay(stdscr,true);
 
-            
-            /*initscr();
             int input = getch();
             if (input=='s') {
+                endwin();
                 game_piece->move_down(*game_board);
                 Sleep(50);
             } else if (input=='d') {
+                endwin();
                 game_piece->move_right(*game_board);
                 Sleep(150);
             } else if (input=='a') {
+                endwin();
                 game_piece->move_left(*game_board);
                 Sleep(150);
             } else if (input=='w') {
+                endwin();
                 game_piece->rotate(*game_board);
                 Sleep(150);                
             } else {
+                endwin();
                 game_piece->move_down(*game_board);
                 Sleep(exp(-level/5.0)*1000);
-            }*/
+            }
 
 
-
-            if (GetAsyncKeyState(VK_DOWN)) {
+            /*if (GetAsyncKeyState(VK_DOWN)) {
                 game_piece->move_down(*game_board);
                 Sleep(50);
             } else if (GetAsyncKeyState(VK_RIGHT)) {					
@@ -114,12 +126,10 @@ void marathon::tetris::initialize_game()
             } else {
                 game_piece->move_down(*game_board);
                 Sleep(exp(-level/5.0)*1000);
-            }  
+            }  */
 
-            
-            system("cls");
-            //std::cout << "\n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n";
-            
+
+            clear_screen();
         }
 
         game_piece->print_piece(*game_board);

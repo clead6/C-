@@ -3,9 +3,15 @@
 #include <limits>
 #include "tetris.h"
 
+static void clear_screen()
+{
+    std::cout << std::string(30, '\n' );
+}
+
+
 int main() 
 {
-    system("cls");
+    clear_screen();
     int game_mode {};
     std::cout << "Welcome to Tetris! Enter 1 to play a speed game, or 2 for a marathon version. " << std::endl;
     std::cin >> game_mode;
