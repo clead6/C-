@@ -1,3 +1,9 @@
+// PHYS 30762 Programming in C++
+// Final Project
+// Clea Dronne - 29/04/2022
+
+// Implements Tetris class
+
 #include <iostream>
 #include <string>
 #include <memory>
@@ -20,8 +26,7 @@
 
 #ifdef _WIN32
 #include <windows.h>
-#include "PDcurses.h"
-
+#include "./PDCurses/curses.h"
 
 #else
 #include <unistd.h>
@@ -35,6 +40,14 @@ static void clear_screen()
 {
     std::cout << std::string(30, '\n' );
 }
+
+auto random_number = [] (auto initial, auto final)
+{
+    std::random_device dev;
+    std::mt19937 rng(dev());
+    std::uniform_int_distribution<std::mt19937::result_type> dist6(initial,final); 
+    return dist6(rng);
+};
 
 
 marathon::tetris::~tetris()
@@ -55,10 +68,8 @@ void marathon::tetris::initialize_game()
 
     while (!game_board->game_over()) {
 
-        std::random_device dev;
-        std::mt19937 rng(dev());
-        std::uniform_int_distribution<std::mt19937::result_type> dist6(1,7); 
-        switch(dist6(rng))
+        int generator = random_number(1,7);
+        switch(generator)
         {
             case 1:
                 this->game_piece=std::make_unique<i_piece>(*game_board);
@@ -120,7 +131,6 @@ void marathon::tetris::initialize_game()
                 Sleep(exp(-level/5.0)*1000);
             }
 
-
             clear_screen();
         }
 
@@ -155,10 +165,8 @@ void speed::tetris::initialize_game()
 
     while (!game_board->game_over()) {
 
-        std::random_device dev;
-        std::mt19937 rng(dev());
-        std::uniform_int_distribution<std::mt19937::result_type> dist6(1,7); 
-        switch(dist6(rng))
+        int generator = random_number(1,7);
+        switch(generator)
         {
             case 1:
                 this->game_piece=std::make_unique<i_piece>(*game_board);

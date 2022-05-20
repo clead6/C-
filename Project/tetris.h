@@ -1,3 +1,9 @@
+// PHYS 30762 Programming in C++
+// Final Project
+// Clea Dronne - 29/04/2022
+
+// Declares Tetris class
+
 #ifndef TETRIS_H
 #define TETRIS_H
 
@@ -6,7 +12,7 @@
 #include <memory>
 #include <ctime>
 #include "board.h"
-#include "tetronimos.h"
+#include "tetrominos.h"
 #include "score.h"
 
 namespace marathon {

@@ -1,3 +1,9 @@
+// PHYS 30762 Programming in C++
+// Final Project
+// Clea Dronne - 29/04/2022
+
+// Main file: starts the game
+
 #include <iostream>
 #include <string>
 #include <limits>

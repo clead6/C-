@@ -1,10 +1,16 @@
+// PHYS 30762 Programming in C++
+// Final Project
+// Clea Dronne - 29/04/2022
+
+// Declares O Piece class - derived class of Tetrominos
+
 #ifndef O_PIECE_H
 #define O_PIECE_H
 
 #include <iostream>
 #include <string>
 #include "board.h"
-#include "tetronimos.h"
+#include "tetrominos.h"
 
 class o_piece: public tetrominos
 {

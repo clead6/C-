@@ -1,10 +1,16 @@
+// PHYS 30762 Programming in C++
+// Final Project
+// Clea Dronne - 29/04/2022
+
+// Declares Z Piece class - derived class of Tetrominos
+
 #ifndef Z_PIECE_H
 #define Z_PIECE_H
 
 #include <iostream>
 #include <string>
 #include "board.h"
-#include "tetronimos.h"
+#include "tetrominos.h"
 
 class z_piece: public tetrominos
 {

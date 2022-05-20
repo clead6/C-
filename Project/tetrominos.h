@@ -1,5 +1,11 @@
-#ifndef TETRONIMOS_H
-#define TETRONIMOS_H
+// PHYS 30762 Programming in C++
+// Final Project
+// Clea Dronne - 29/04/2022
+
+// Declares virtual Tetrominos class
+
+#ifndef TETROMINOS_H
+#define TETROMINOS_H
 
 #include <iostream>
 #include <string>

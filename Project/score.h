@@ -1,3 +1,9 @@
+// PHYS 30762 Programming in C++
+// Final Project
+// Clea Dronne - 29/04/2022
+
+// Declares Score class
+
 #ifndef SCORE_H
 #define SCORE_H
 
