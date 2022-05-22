@@ -16,14 +16,14 @@ score::~score()
 }
 
 // Calculates points for extra pieces
-int score::points_pieces()
+const int score::points_pieces()
 {
     score_count+=25;
     return score_count;
 }
 
 // Calculates points for extra lines
-int score::points_lines(int &level, int &lines_deleted)
+const int score::points_lines(const int &level, const int &lines_deleted)
 {
     if (lines_deleted==1) {
         score_count += (level+1)*40;
@@ -38,7 +38,7 @@ int score::points_lines(int &level, int &lines_deleted)
 }
 
 // Prints out the score and the level
-void score::print_score(int &level, int &score_count)
+const void score::print_score(const int &level, int &score_count)
 {
     std::cout << "Level " << level << "\tScore " << score_count << std::endl;
     std::cout << std::string(14, '\n' );
