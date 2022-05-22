@@ -31,7 +31,7 @@ board::~board()
 }
 
 // Prints board and limits around it
-const void board::print_board() 
+void board::print_board() const
 {
     std::cout << "|";
     for (int j{0};j<length;j++) {
@@ -54,7 +54,7 @@ const void board::print_board()
 }
 
 // Index function to easily access console elements
-const int board::index(int i, int j) const
+int board::index(int i, int j) const
 {
     if(i<=0 || i>length || j<=0 || j>height) {
         std::cout << "Element out of bounds" << std::endl;
@@ -70,7 +70,7 @@ std::string &board::operator()(const int i, const int j) const
 }
 
 // Checks if game is over
-const bool board::game_over() 
+bool board::game_over() const
 {
     for (int i{1};i<=length;i++) {
         if (console[index(i,1)]=="#") {
@@ -82,7 +82,7 @@ const bool board::game_over()
 }
 
 // Checks if any rows are full and if so deletes them
-const int board::delete_rows()
+int board::delete_rows() const
 {
     bool row_full {false};
     int number_rows {};

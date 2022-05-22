@@ -63,7 +63,7 @@ speed::tetris::~tetris()
 }
 
 // Initializes the marathon game and runs it until game over
-void marathon::tetris::initialize_game()
+void marathon::tetris::initialize_game() 
 {
     clear_screen();
     this->game_board=std::make_unique<board>(12,12);
@@ -158,7 +158,7 @@ void marathon::tetris::initialize_game()
 }
 
 // Initializes the tetris game and runs until timer is over
-void speed::tetris::initialize_game()
+void speed::tetris::initialize_game() 
 {
     clear_screen();
     clock_t time;

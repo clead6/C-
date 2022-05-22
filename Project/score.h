@@ -21,9 +21,9 @@ private:
 public:
     score() {score_count=0;}
     ~score();
-    const int points_pieces();
-    const int points_lines(const int &level, const int &lines_deleted);
-    const void print_score(const int &level, int &score_count);
+    int points_pieces();
+    int points_lines(const int &level, const int &lines_deleted);
+    void print_score(const int &level, int &score_count) const;
 };
 
 #endif

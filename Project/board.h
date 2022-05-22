@@ -21,13 +21,13 @@ public:
     board()=default;
     board(int h, int l); // parameterised constructor
     ~board(); // destructor
-    const int get_length() {return length;}
-    const int get_height() {return height;}
-    std::string *get_console() {return console;}
-    const void print_board();
-    const bool game_over();
-    const int delete_rows();
-    const int index(int i, int j) const; 
+    int get_length() const {return length;} 
+    int get_height() const {return height;} 
+    std::string *get_console() const {return console;} 
+    void print_board() const;
+    bool game_over() const;
+    int delete_rows() const;
+    int index(const int i, const int j) const; 
     std::string & operator()(const int i, const int j) const; 
 };
 
