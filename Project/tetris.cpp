@@ -47,8 +47,8 @@ auto random_number = [] (auto initial, auto final)
 {
     std::random_device dev;
     std::mt19937 rng(dev());
-    std::uniform_int_distribution<std::mt19937::result_type> dist6(initial,final); 
-    return dist6(rng);
+    std::uniform_int_distribution<std::mt19937::result_type> distribution(initial,final); 
+    return distribution(rng);
 };
 
 // Destructor

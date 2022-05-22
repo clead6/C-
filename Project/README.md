@@ -8,4 +8,6 @@ install ncurses library
 Put in terminal: sudo yum install ncurses-devel
 
 On Windows:
-PDcurses in the folder
+PDcurses in the folder - this library causes a warning
+
+It is recommended to run the game in an external terminal.
