@@ -14,7 +14,7 @@
 
 class t_piece: public tetrominos
 {
-protected:
+private:
     std::string *piece {nullptr};
     int horizontal_position {};
     int vertical_position {};

@@ -3,13 +3,14 @@
 // Clea Dronne - 29/04/2022
 
 // Initializes T Piece class - derived class of Tetrominos
+// 4 rotation states
 
 #include <iostream>
 #include <string>
 #include "board.h"
 #include "t_piece.h"
 
-
+// Constructor
 t_piece::t_piece(board & board) 
 {
     piece = new std::string[4];
@@ -23,6 +24,7 @@ t_piece::t_piece(board & board)
 
 }
 
+// Destructor
 t_piece::~t_piece()
 {
     std::cout << "delete piece" << std::endl;
@@ -32,6 +34,7 @@ t_piece::~t_piece()
     delete[] piece;
 }
 
+// Prints piece by mofidying board
 void t_piece::print_piece(board & board) 
 {
     std::string* game_console = board.get_console();
@@ -71,6 +74,7 @@ void t_piece::print_piece(board & board)
     }
 }
 
+// Piece moves down one line
 void t_piece::move_down(board & board) 
 {
     std::string* game_console = board.get_console();
@@ -137,6 +141,7 @@ void t_piece::move_down(board & board)
     }  
 }
 
+// Piece moves right one column
 void t_piece::move_right(board &board)
 {
     std::string* game_console = board.get_console();
@@ -204,6 +209,7 @@ void t_piece::move_right(board &board)
     }   
 }
 
+// Piece moves left one column
 void t_piece::move_left(board &board)
 {
     std::string* game_console = board.get_console();
@@ -271,17 +277,17 @@ void t_piece::move_left(board &board)
     }        
 }
 
+// Piece rotates clockwise
 void t_piece::rotate(board &board)
 {
     std::string* game_console = board.get_console();
     int height {board.get_height()};
     int length {board.get_length()};
-    //rotation=3;
 
     switch (rotation)
     {
         case 0:
-            if (vertical_position>1) { //remove if and test try catch
+            if (vertical_position>1) { 
                 try {
                     if (game_console[board.index(horizontal_position+1,vertical_position-1)]==" ") {
                         
@@ -374,6 +380,7 @@ void t_piece::rotate(board &board)
     }
 }
 
+// Piece blocked and can't move down
 bool t_piece::bottom_wall(board &board)
 {
     std::string* game_console = board.get_console();
@@ -440,6 +447,7 @@ bool t_piece::bottom_wall(board &board)
     }
 }
 
+// Piece blocked and can't move right
 bool t_piece::right_wall(board &board)
 {
     std::string* game_console = board.get_console();
@@ -497,6 +505,7 @@ bool t_piece::right_wall(board &board)
     }  
 }
 
+// Piece blocked and can't move left
 bool t_piece::left_wall(board &board)
 {
     std::string* game_console = board.get_console();

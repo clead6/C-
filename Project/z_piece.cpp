@@ -3,12 +3,14 @@
 // Clea Dronne - 29/04/2022
 
 // Initializes Z Piece class - derived class of Tetrominos
+// 2 rotation states
 
 #include <iostream>
 #include <string>
 #include "board.h"
 #include "z_piece.h"
 
+// Constructor
 z_piece::z_piece(board & board) 
 {
     piece = new std::string[4];
@@ -22,6 +24,7 @@ z_piece::z_piece(board & board)
 
 }
 
+// Destructor
 z_piece::~z_piece()
 {
     std::cout << "delete piece" << std::endl;
@@ -31,6 +34,7 @@ z_piece::~z_piece()
     delete[] piece;
 }
 
+// Prints piece by modifying board
 void z_piece::print_piece(board & board) 
 {
     std::string* game_console = board.get_console();
@@ -55,6 +59,7 @@ void z_piece::print_piece(board & board)
     }
 }
 
+// Piece moves down one line
 void z_piece::move_down(board & board) 
 {
     std::string* game_console = board.get_console();
@@ -92,6 +97,7 @@ void z_piece::move_down(board & board)
     }  
 }
 
+// Piece moves right one column
 void z_piece::move_right(board &board)
 {
     std::string* game_console = board.get_console();
@@ -132,6 +138,7 @@ void z_piece::move_right(board &board)
     }   
 }
 
+// Piece moves left one column
 void z_piece::move_left(board &board)
 {
     std::string* game_console = board.get_console();
@@ -173,6 +180,7 @@ void z_piece::move_left(board &board)
     }        
 }
 
+// Piece rotates clockwise
 void z_piece::rotate(board &board)
 {
     std::string* game_console = board.get_console();
@@ -232,6 +240,7 @@ void z_piece::rotate(board &board)
     }
 }
 
+// Piece blocked and can't move down
 bool z_piece::bottom_wall(board &board)
 {
     std::string* game_console = board.get_console();
@@ -272,6 +281,7 @@ bool z_piece::bottom_wall(board &board)
     }
 }
 
+// Piece blocked and can't move right
 bool z_piece::right_wall(board &board)
 {
     std::string* game_console = board.get_console();
@@ -310,6 +320,7 @@ bool z_piece::right_wall(board &board)
     }  
 }
 
+// Piece blocked and can't move left
 bool z_piece::left_wall(board &board)
 {
     std::string* game_console = board.get_console();

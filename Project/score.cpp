@@ -9,17 +9,20 @@
 #include "board.h"
 #include "tetris.h"
 
+// Destructor
 score::~score()
 {
     std::cout << "delete score" << std::endl;
 }
 
+// Calculates points for extra pieces
 int score::points_pieces()
 {
     score_count+=25;
     return score_count;
 }
 
+// Calculates points for extra lines
 int score::points_lines(int &level, int &lines_deleted)
 {
     if (lines_deleted==1) {
@@ -34,6 +37,7 @@ int score::points_lines(int &level, int &lines_deleted)
     return score_count;
 }
 
+// Prints out the score and the level
 void score::print_score(int &level, int &score_count)
 {
     std::cout << "Level " << level << "\tScore " << score_count << std::endl;

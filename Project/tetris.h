@@ -42,7 +42,6 @@ namespace speed {
         int lines_deleted {};
         int lines_deleted_count {};
         int score_count {};
-        clock_t time;
         std::unique_ptr<board> game_board;
         std::unique_ptr<tetrominos> game_piece;
         std::unique_ptr<score> game_score;

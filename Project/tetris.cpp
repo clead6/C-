@@ -36,11 +36,13 @@
 
 #endif
 
+// Clears screen by printing empty lines - static function as implemented in different files
 static void clear_screen()
 {
     std::cout << std::string(30, '\n' );
 }
 
+// Lambda function to randomly generate a number between two bounds
 auto random_number = [] (auto initial, auto final)
 {
     std::random_device dev;
@@ -49,7 +51,7 @@ auto random_number = [] (auto initial, auto final)
     return dist6(rng);
 };
 
-
+// Destructor
 marathon::tetris::~tetris()
 {
     std::cout << "delete tetris" << std::endl;
@@ -60,6 +62,7 @@ speed::tetris::~tetris()
     std::cout << "delete tetris" << std::endl;
 }
 
+// Initializes the marathon game and runs it until game over
 void marathon::tetris::initialize_game()
 {
     clear_screen();
@@ -99,8 +102,6 @@ void marathon::tetris::initialize_game()
         game_piece->print_piece(*game_board);
 
         while(!game_piece->bottom_wall(*game_board)) { 
-
-
             initscr();
             game_board->print_board();  
             game_score->print_score(level, score_count);  
@@ -156,9 +157,11 @@ void marathon::tetris::initialize_game()
     game_score->print_score(level, score_count);    
 }
 
+// Initializes the tetris game and runs until timer is over
 void speed::tetris::initialize_game()
 {
     clear_screen();
+    clock_t time;
     time = clock();
     this->game_board=std::make_unique<board>(12,12);
     this->game_score=std::make_unique<score>();
@@ -257,6 +260,6 @@ void speed::tetris::initialize_game()
 
     }   
 
-    std::cout << "Game Over" << std::endl;
+    std::cout << "Time Out" << std::endl;
     game_score->print_score(level, score_count);    
 }

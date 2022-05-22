@@ -3,12 +3,14 @@
 // Clea Dronne - 29/04/2022
 
 // Initializes O Piece class - derived class of Tetrominos
+// 1 rotation state
 
 #include <iostream>
 #include <string>
 #include "board.h"
 #include "o_piece.h"
 
+// Constructor
 o_piece::o_piece(board & board) 
 {
     piece = new std::string[4];
@@ -18,10 +20,11 @@ o_piece::o_piece(board & board)
     }
 
     vertical_position = 1; 
-    horizontal_position = board.get_length()/2; // get length
+    horizontal_position = board.get_length()/2; 
 
 }
 
+// Destructor
 o_piece::~o_piece()
 {
     std::cout << "delete piece" << std::endl;
@@ -31,6 +34,7 @@ o_piece::~o_piece()
     delete[] piece;
 }
 
+// Prints piece by modifying board
 void o_piece::print_piece(board & board) 
 {
     std::string* game_console = board.get_console();
@@ -45,6 +49,7 @@ void o_piece::print_piece(board & board)
 
 }
 
+// Piece moves down one line
 void o_piece::move_down(board & board) 
 {
     std::string* game_console = board.get_console();
@@ -66,6 +71,7 @@ void o_piece::move_down(board & board)
     } 
 }
 
+// Piece moves right one column
 void o_piece::move_right(board &board)
 {
     std::string* game_console = board.get_console();
@@ -91,6 +97,7 @@ void o_piece::move_right(board &board)
     }   
 }
 
+// Piece moves left one column
 void o_piece::move_left(board &board)
 {
     std::string* game_console = board.get_console();
@@ -115,6 +122,7 @@ void o_piece::move_left(board &board)
     }        
 }
 
+// Piece rotates clockwise
 void o_piece::rotate(board &board)
 {
     std::string* game_console = board.get_console();
@@ -122,6 +130,7 @@ void o_piece::rotate(board &board)
     int length {board.get_length()};
 }
 
+// Piece blocked and can't move down
 bool o_piece::bottom_wall(board &board)
 {
     std::string* game_console = board.get_console();
@@ -139,6 +148,7 @@ bool o_piece::bottom_wall(board &board)
     }
 }
 
+// Piece blocked and can't move right
 bool o_piece::right_wall(board &board)
 {
     std::string* game_console = board.get_console();
@@ -156,6 +166,7 @@ bool o_piece::right_wall(board &board)
     }
 }
 
+// Piece blocked and can't move left
 bool o_piece::left_wall(board &board)
 {
     std::string* game_console = board.get_console();

@@ -9,6 +9,7 @@
 #include <algorithm>
 #include "board.h"
 
+// Constructor
 board::board(int h, int l) 
 {
     height = h;
@@ -20,6 +21,7 @@ board::board(int h, int l)
     }
 }
 
+// Destructor
 board::~board()
 {
     std::cout << "delete board" << std::endl;
@@ -28,6 +30,7 @@ board::~board()
     delete[] console;
 }
 
+// Prints board and limits around it
 void board::print_board() 
 {
     std::cout << "|";
@@ -50,6 +53,7 @@ void board::print_board()
     std::cout << "|" << std::endl;
 }
 
+// Index function to easily access console elements
 int board::index(int i, int j) const
 {
     if(i<=0 || i>length || j<=0 || j>height) {
@@ -59,11 +63,13 @@ int board::index(int i, int j) const
     return (j-1)*length+(i-1);
 }
 
+// Overload () operator to access console elements
 std::string &board::operator()(const int i, const int j) const
 {
     return console[index(i,j)];
 }
 
+// Checks if game is over
 bool board::game_over() 
 {
     for (int i{1};i<=length;i++) {
@@ -75,6 +81,7 @@ bool board::game_over()
     return false;
 }
 
+// Checks if any rows are full and if so deletes them
 int board::delete_rows()
 {
     bool row_full {false};
